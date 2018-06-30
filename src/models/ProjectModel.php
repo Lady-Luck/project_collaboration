@@ -9,10 +9,10 @@ class ProjectModel extends Model {
     protected function getFields() {
 
         $fields = array(
-            'project_name' => new Field(new StringValidator(), true),
-            'project_author' => new Field(new StringValidator() ,true),
-            'project_date' => new Field(new DateTimeValidator() ,true),
-            'project_progress' => new Field(new StringValidator() ,true),
+            'name' => new Field(new StringValidator(), true),
+            'user_id' => new Field(new StringValidator() ,true),
+            'created_at' => new Field(new DateTimeValidator() ,true),
+            'progress' => new Field(new StringValidator() ,true),
         );
         return $fields;
     }
@@ -20,7 +20,7 @@ class ProjectModel extends Model {
     public function findProjectsByUser ($user) {
         $projects = null;
 
-        $sql = "SELECT * FROM projects WHERE project_author = " . $user->id . ";";
+        $sql = "SELECT * FROM project WHERE user_id = " . $user->id . ";";
         $prep = $this->getConnection()->prepare($sql);
         $result = $prep->execute();
         if (!$result) {

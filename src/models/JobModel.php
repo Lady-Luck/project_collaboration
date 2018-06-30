@@ -20,7 +20,7 @@ class JobModel extends Model {
     }
 
     public function applyToJob ($userId, $jobId) {
-        $sql = "UPDATE jobs SET user_id = ? WHERE ID = ?;";
+        $sql = "UPDATE job SET user_id = ? WHERE job_id = ?;";
 
         $prep = $this->getConnection()->prepare($sql);
         $result = $prep->execute([$userId, $jobId]);

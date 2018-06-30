@@ -15,7 +15,7 @@ class InvitationModel extends Model {
     }
 
     public function acceptInvitation ($id) {
-        $sql = "UPDATE invitations SET accepted = 1 WHERE ID = ?;";
+        $sql = "UPDATE invitation SET is_accepted = 1 WHERE invitation_id = ?;";
 
         $prep = $this->getConnection()->prepare($sql);
         $result = $prep->execute([$id]);
