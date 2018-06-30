@@ -1,0 +1,19 @@
+{
+    "name": "andjelka/project_collaboration",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Andjelka",
+            "email": "andjelkastosic10@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^1.35",
+        "twbs/bootstrap": "^4.1"
+    },
+    "autoload": {
+      "psr-4": {
+        "App\\" : ""
+      }
+    }
+}
