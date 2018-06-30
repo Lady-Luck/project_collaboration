@@ -12,6 +12,8 @@ class JobUserModel extends Model  {
             'user_id' => new Field(new StringValidator(), true),
             'job_id' => new Field(new StringValidator(), true),
             'progress' => new Field(new StringValidator() ,true),
+            'deadline' => new Field(new StringValidator() ,true),
+            'comment' => new Field(new StringValidator() ,true),
         );
         return $fields;
     }

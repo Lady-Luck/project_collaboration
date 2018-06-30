@@ -2,6 +2,7 @@
 
 use App\src\core\Request;
 use App\src\models\JobModel;
+use App\src\models\JobUserModel;
 use App\src\models\ProjectModel;
 
 class JobController extends Controller {
@@ -16,9 +17,11 @@ class JobController extends Controller {
             $data = $request->getData()['job_form'];
 
             $jobModel = new JobModel($this->getDatabaseConnection());
+            $data['user_id'] = $this->getUser()->user_id;
+            $data['project_id'] = $project->project_id;
             $jobModel->add($data);
 
-            $this->redirect('/project_collaboration/project/'.$project->id);
+            $this->redirect(BASE_URL . '/project/'.$project->project_id);
         }
 
         return $this->twig->render('/job.html.twig', array(
@@ -42,7 +45,13 @@ class JobController extends Controller {
             header('Content-type: application/json');
             $response = null;
 
-            $success = $jobModel->applyToJob($user->id, $jobId);
+            $data = $request->getData()['job_apply'];
+            $data['user_id'] = $user->user_id;
+            $data['job_id']  = $jobId;
+
+            $jobUserModel = new JobUserModel($this->getDatabaseConnection());
+            $success = $jobUserModel->insertToDb($data);
+
             if ($success) {
                 $response = array (
                     'error' => false,

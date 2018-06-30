@@ -56,6 +56,34 @@ class ProjectController extends Controller {
         ));
     }
 
+    public function myProjects(Request $request) {
+
+        $user = $this->getUser();
+        if (empty($user)) {
+            $this->redirect('login');
+        }
+
+        $projectModel = new ProjectModel($this->getDatabaseConnection());
+        $projects = $projectModel->findProjectsByUser($user);
+
+        $invitationModel = new InvitationModel($this->getDatabaseConnection());
+
+        $br = $progressSum = 0;
+        if ($projects) {
+            foreach ($projects as $value) if (!empty($value->progress)) {
+                $br++;
+                $progressSum = $progressSum + $value->progress;
+            }
+        }
+
+        return $this->twig->render('/home.html.twig', array(
+            'user' => $user,
+            'projects' => $projects,
+            'progressSum' => $progressSum ? $progressSum/$br : 0
+        ));
+
+    }
+
     public function inviteUserToCollaborateForm (Request $request) {
 
         $id = $request->getParams()[0];
@@ -101,13 +129,13 @@ class ProjectController extends Controller {
 
             $invitationModel = new InvitationModel($this->getDatabaseConnection());
             $invitationData = array(
-                'project_id' => $project->id,
-                'user_id' => $user->id
+                'project_id' => $project->project_id,
+                'user_id' => $user->user_id
             );
             $invitation = $invitationModel->add($invitationData);
 
             $emailService = new EmailService();
-            $subject = "Poziv za ucesce na projektu ".$project->project_name;
+            $subject = "Poziv za ucesce na projektu ".$project->name;
             $message = $this->twig->render('/generic/email/invite_user.html.twig', array(
                 'user' => $user,
                 'project' => $project,

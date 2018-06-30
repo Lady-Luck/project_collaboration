@@ -8,8 +8,9 @@ $( document ).ready(function() {
             method: "POST",
             success: function(data){
                 var element =  $("#invite_user_form");
+                console.log(data);
                 element.html(data);
-                element.show();
+                element.removeClass('hidden');
             }
         });
     });

@@ -19,16 +19,4 @@ class JobModel extends Model  {
         return $fields;
     }
 
-    public function applyToJob ($userId, $jobId) {
-        $sql = "UPDATE job SET user_id = ? WHERE job_id = ?;";
-
-        $prep = $this->getConnection()->prepare($sql);
-        $result = $prep->execute([$userId, $jobId]);
-
-        if (!$result) {
-            return false;
-        }
-        return true;
-    }
-
 }

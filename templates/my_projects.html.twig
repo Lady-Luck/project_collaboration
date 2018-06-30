@@ -1,0 +1,59 @@
+{% extends "_global/index.html" %}
+
+{% block header %}{% include 'main/header.html.twig' %}{% endblock %}
+
+{% block main %}
+
+    <main role="main">
+        {% if projects is not empty %}
+            <div class="row margin-small" >
+                <div class="col-12">
+                    <p>Ukupan napredak na projektima: {{ progressSum }} %</p>
+                    <div class="progress progress-extended" >
+                        <div class="progress-bar " role="progressbar" style="width: {{ progressSum }}%" aria-valuenow="{{ progressSum }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-4">
+                <p><a class="btn btn-primary" href="project" role="button">Dodaj novi projekat</a></p>
+            </div>
+        </div>
+        <hr>
+
+        {% if projects is empty %}
+            Niste dodali nijedan projekat.
+        {% else %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Projekat</th>
+                        <th>Autor</th>
+                        <th>Datum</th>
+                        <th>Progres</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for project in projects %}
+                        <tr>
+                            <td>{{ project.project_id }} </td>
+                            <td><a href="{{ base_url }}/project/{{ project.project_id }}" >{{ project.name }}</a></td>
+                            <td>{{ project.user.first_name }} {{ project.user.last_name }}</td>
+                            <td>{{ project.created_at|date('d.m.Y') }}</td>
+                            <td>{{ project.progress }}%</td>
+                            <th><a href="{{ base_url }}/project/{{ project.project_id }}" >Detaljnije</a></th>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+    </main>
+
+{% endblock %}

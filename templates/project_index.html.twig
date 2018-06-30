@@ -17,15 +17,17 @@
 
         <div class="row">
             <div class="col-2">
-                <p><a class="btn btn-primary" href="{{ base_url }}/job/{{ project.id }}" role="button">Dodaj novi posao</a></p>
+                <p><a class="btn btn-primary" href="{{ base_url }}/job/{{ project.project_id }}" role="button">Dodaj novi posao</a></p>
             </div>
-            <div class="col-2">
-                <button type="button" class="btn btn-primary js-invite-user-form" data-url="{{ base_url }}/inviteUserForm/{{ project.project_id }}">Dodaj ucesnike</button>
-            </div>
+            {% if project.user_id == user.user_id %}
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary js-invite-user-form" data-url="{{ base_url }}/inviteUserForm/{{ project.project_id }}">Dodaj učesnike</button>
+                </div>
+            {% endif %}
         </div>
         <hr>
         <div class="row">
-            <div class="col-12" id="invite_user_form hidden" ></div>
+            <div class="col-12 hidden" id="invite_user_form"></div>
         </div>
 
     {% if jobs is not empty %}
