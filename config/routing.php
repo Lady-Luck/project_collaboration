@@ -21,9 +21,10 @@
     \App\src\core\Router::add('ProjectController', 'myProjects', 'my_projects');
 
     # Create Job
-    \App\src\core\Router::add('JobController', 'newJob', 'job/[\d]+');
+    \App\src\core\Router::add('JobController', 'newJob', 'new/job/[\d]+');
 
     \App\src\core\Router::add('JobController', 'applyToJob', 'jobApply/[\d]+');
+    \App\src\core\Router::add('JobController', 'view', 'job/[\d]+');
 
     # Project page
     \App\src\core\Router::add('ProjectController', 'project', 'project/[\d]+');
@@ -35,6 +36,8 @@
     \App\src\core\Router::add('ProjectController', 'video', 'video');
 
     \App\src\core\Router::add('ApiController', 'invitationAcceptance', 'invitationAccept/[\d]+');
+
+    \App\src\core\Router::add('CommentController', 'newComment', 'new/comment/[\d]+');
 
 
 

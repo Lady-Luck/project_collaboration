@@ -1,0 +1,43 @@
+{% extends "_global/index.html" %}
+
+{% block header %}{% include 'main/header.html.twig' %}{% endblock %}
+
+{% block main %}
+
+    <h1 class="display-6">Novi komentar</h1>
+
+    <form action="" method="POST" name="comment_form">
+
+        <input type="hidden" name="comment_form[job_id]" id="input_job_id" value="{{ job }}">
+
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="input_comment">Komentar:</label>
+                    <textarea class="form-control" id="input_comment" name="comment_form[comment]" required placeholder="Unesite tekst komentara" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="input_is_private">Vidljivost komentara:</label>
+                    <div class="radio">
+                        <label><input type="radio" name="comment_form[is_private]" id="input_is_private" value="1">Privatan</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="comment_form[is_private]" id="input_is_private" value="0" checked>Javan</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary add-btn">Snimi</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <hr>
+{% endblock %}

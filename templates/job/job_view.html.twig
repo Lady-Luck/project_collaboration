@@ -1,0 +1,44 @@
+{% extends "_global/index.html" %}
+
+{% block header %}{% include 'main/header.html.twig' %}{% endblock %}
+
+{% block main %}
+
+    <h1 class="display-5">{{ job.name }} </h1>
+
+    <div class="row margin-small">
+        <div class="col-12">
+           <span class="bold">Opis:</span> <span>{{ job.description }}</span><br>
+            <span class="bold">Planirani zavrsetak:</span> <span>{{ job.deadline|date('d.m.Y') }}</span><br>
+        </div>
+    </div>
+
+    <div class="row margin-small">
+        <div class="col-8">
+            <p>Napredak na poslu: {{ job.progress }} %</p>
+            <div class="progress progress-extended" >
+                <div class="progress-bar " role="progressbar" style="width: {{  job.progress }}%" aria-valuenow="{{  job.progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-2">
+            <p><a class="btn btn-primary" href="{{ base_url }}/new/comment/{{ job.job_id }}" role="button">Dodaj novi komentar</a></p>
+        </div>
+    </div>
+
+    <hr>
+    {% if comments is not empty %}
+        <div class="row">
+            <div class="col-12">
+               <h2 class="display-5">Lista komentara:</h2>
+
+                {% include '/comment/comment_list.html.twig' %}
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

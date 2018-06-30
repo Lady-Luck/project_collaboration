@@ -1,9 +1,11 @@
 <?php namespace App\src\controllers;
 
 use App\src\core\Request;
+use App\src\models\CommentModel;
 use App\src\models\JobModel;
 use App\src\models\JobUserModel;
 use App\src\models\ProjectModel;
+use App\src\models\UserModel;
 
 class JobController extends Controller {
 
@@ -71,14 +73,34 @@ class JobController extends Controller {
             'job' => $job
         ));
 
-
     }
 
+    public function view(Request $request) {
 
+        $jobId = $request->getParams()[0];
+        $jobModel = new JobModel($this->getDatabaseConnection());
+        $job = $jobModel->getById($jobId);
 
+        $commentModel = new CommentModel($this->getDatabaseConnection());
+        $userModel = new UserModel($this->getDatabaseConnection());
 
+        $comments = $commentModel->getCommentsForJob($jobId);
 
+        if ($comments) {
 
+            foreach ($comments as $key => $comment) {
+                $user = null;
+                $user = $userModel->getById($comment['user_id']);
+                $comments[$key]['user'] = $user;
+            }
 
+        }
+
+        return $this->twig->render('/job/job_view.html.twig', array(
+            'user' => $this->getUser(),
+            'job' => $job,
+            'comments' => $comments
+        ));
+    }
 
 }

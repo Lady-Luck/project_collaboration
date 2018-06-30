@@ -17,7 +17,7 @@
 
         <div class="row">
             <div class="col-2">
-                <p><a class="btn btn-primary" href="{{ base_url }}/job/{{ project.project_id }}" role="button">Dodaj novi posao</a></p>
+                <p><a class="btn btn-primary" href="{{ base_url }}/new/job/{{ project.project_id }}" role="button">Dodaj novi posao</a></p>
             </div>
             {% if project.user_id == user.user_id %}
                 <div class="col-2">
@@ -48,7 +48,9 @@
                     {% for job in jobs %}
                         <tr>
                             <td>{{ job.job_id }} </td>
-                            <td>{{ job.name }}</td>
+                            <td>
+                                <a href="{{ base_url }}/job/{{ job.job_id }}">{{ job.name }}</a>
+                            </td>
                             <td>{{ job.description }}</td>
                             <td>{{ job.deadline | date('d.m.Y')}}</td>
                             <td>{{ job.progress }}%</td>
