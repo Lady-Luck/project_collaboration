@@ -16,7 +16,7 @@ use App\src\models\InvitationModel;
             $projects = $projectModel->findProjectsByUser($user);
 
             $invitationModel = new InvitationModel($this->getDatabaseConnection());
-            $invitations = $invitationModel->getByFieldName('user_id',$user->id);
+            $invitations = $invitationModel->getByFieldName('user_id',$user->user_id);
 
             foreach ($invitations as $value){
                 $project = (array)$projectModel->getOneByFieldName('id', $value->project_id);

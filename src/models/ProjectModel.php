@@ -20,7 +20,8 @@ class ProjectModel extends Model {
     public function findProjectsByUser ($user) {
         $projects = null;
 
-        $sql = "SELECT * FROM project WHERE user_id = " . $user->id . ";";
+
+        $sql = "SELECT * FROM project WHERE user_id = " . $user->user_id . ";";
         $prep = $this->getConnection()->prepare($sql);
         $result = $prep->execute();
         if (!$result) {
@@ -29,7 +30,7 @@ class ProjectModel extends Model {
         $projects = $prep->fetchAll(\PDO::FETCH_ASSOC);
 
         foreach ($projects as $key => $project) {
-            $projects[$key]['project_author'] = $user;
+            $projects[$key]['user'] = $user;
         }
 
         return $projects;

@@ -17,9 +17,9 @@ class ProjectController extends Controller {
             $data = $request->getData();
             $data = $data['project_form'];
 
-            $data['project_author'] = $this->getUser()->id;
-            $today = new \DateTime('now');
-            $data['project_date']   = $today->format('d-m-Y');
+            $data['user_id'] = $this->getUser()->user_id;
+            $today = new \DateTime();
+            $data['created_at']   = $today->format('Y-m-d H:i:s');
 
             $projectModel = new ProjectModel($this->getDatabaseConnection());
             $projectModel->add($data);

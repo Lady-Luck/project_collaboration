@@ -17,10 +17,10 @@
 
         <div class="row">
             <div class="col-2">
-                <p><a class="btn btn-primary" href="/project_collaboration/job/{{ project.id }}" role="button">Dodaj novi posao</a></p>
+                <p><a class="btn btn-primary" href="{{ base_url }}/job/{{ project.id }}" role="button">Dodaj novi posao</a></p>
             </div>
             <div class="col-2">
-                <button type="button" class="btn btn-primary js-invite-user-form" data-url="/project_collaboration/inviteUserForm/{{ project.id }}">Dodaj ucesnike</button>
+                <button type="button" class="btn btn-primary js-invite-user-form" data-url="{{ base_url }}/inviteUserForm/{{ project.project_id }}">Dodaj ucesnike</button>
             </div>
         </div>
         <hr>
@@ -45,13 +45,13 @@
                 <tbody>
                     {% for job in jobs %}
                         <tr>
-                            <td>{{ job.id }} </td>
+                            <td>{{ job.job_id }} </td>
                             <td>{{ job.name }}</td>
                             <td>{{ job.description }}</td>
                             <td>{{ job.deadline | date('d.m.Y')}}</td>
                             <td>{{ job.progress }}%</td>
                             <td><a href="" class="btn btn-primary">Detaljnije</a></td>
-                            <td><a href="/project_collaboration/jobApply/{{ job.id }}" class="btn btn-success">Prijavi se</a></td>
+                            <td><a href="{{ base_url }}/jobApply/{{ job.job_id }}" class="btn btn-success">Prijavi se</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

@@ -15,7 +15,7 @@ abstract class Model {
     final private function getTableName() {
         $matches = array();
         preg_match('|^.*\\\((?:[A-Z][a-z]+)+)Model$|', static::class, $matches);
-        return substr(strtolower(preg_replace('|[A-Z]|', '_$0', $matches[1])), 1) . 's';
+        return substr(strtolower(preg_replace('|[A-Z]|', '_$0', $matches[1])), 1);
     }
 
     protected function getFields () {
@@ -65,7 +65,7 @@ abstract class Model {
 
     public function getById ($userId) {
         $object = null;
-        $sql = "SELECT * FROM ". $this->getTableName() ." WHERE id = ?;";
+        $sql = "SELECT * FROM ". $this->getTableName() ." WHERE {$this->getTableName()}_id = ?;";
 
         $prep = $this->dbc->getConnection()->prepare($sql);
         $res = $prep->execute([$userId]);
