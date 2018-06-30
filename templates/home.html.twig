@@ -42,11 +42,11 @@
                     {% for project in projects %}
                         <tr>
                             <td>{{ project.id }} </td>
-                            <td><a href="/project_collaboration/project/{{ project.id }}" >{{ project.project_name }}</a></td>
+                            <td><a href="{{ base_url }}/project/{{ project.id }}" >{{ project.project_name }}</a></td>
                             <td>{{ project.project_author.first_name }} {{ project.project_author.last_name }}</td>
                             <td>{{ project.project_date|date('d.m.Y') }}</td>
                             <td>{{ project.progress }}%</td>
-                            <th><a href="project/{{ project.id }}" >Detaljnije</a</th>
+                            <th><a href="{{ base_url }}/project/{{ project.id }}" >Detaljnije</a></th>
                         </tr>
                     {% endfor %}
                     </tbody>

@@ -8,14 +8,14 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/project_collaboration/home">Pocetna <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ base_url }}/home">Početna <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Projekti
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="/project_collaboration/project">Dodaj novi projekat</a>
+                            <a class="dropdown-item" href="{{ base_url }}/project">Dodaj novi projekat</a>
                         </div>
                     </li>
                 </ul>
@@ -25,7 +25,7 @@
                         <a class="nav-link" href="#">{{ user.first_name }} {{ user.last_name }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/project_collaboration/logout">Izloguj se</a>
+                        <a class="nav-link" href="{{ base_url }}/logout">Izloguj se</a>
                     </li>
                 </ul>
             </div>

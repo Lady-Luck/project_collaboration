@@ -50,6 +50,7 @@ class Controller {
             "cache" => "./twig-cache",
             "auto_reload" => true
         ));
+        $this->twig->addGlobal('base_url', BASE_URL);
     }
 
     final public function getData () {

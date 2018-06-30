@@ -77,8 +77,7 @@ class SecurityController extends Controller {
 
             if (empty($errors)) {
                 $this->setSession('user', $user);
-                $this->redirect('home', 302);
-
+                $this->redirect('home');
             }
         }
 
@@ -90,7 +89,7 @@ class SecurityController extends Controller {
 
     public function logout() {
         $this->sessionDestroy();
-        $this->redirect('login', 302);
+        $this->redirect('login');
     }
 
     public function registerMessage (Request $request) {
