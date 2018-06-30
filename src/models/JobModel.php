@@ -1,10 +1,10 @@
 <?php namespace App\src\models;
 
 use App\src\core\Field;
+use App\src\core\Model;
 use App\src\validators\StringValidator;
-use App\src\validators\EmailValidator;
 
-class JobModel extends Model {
+class JobModel extends Model  {
 
     protected function getFields() {
 

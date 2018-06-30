@@ -1,6 +1,7 @@
 <?php namespace App\src\models;
 
 use App\src\core\Field;
+use App\src\core\Model;
 use App\src\validators\DateTimeValidator;
 use App\src\validators\StringValidator;
 
@@ -35,5 +36,4 @@ class ProjectModel extends Model {
 
         return $projects;
     }
-
 }

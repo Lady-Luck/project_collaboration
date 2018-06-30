@@ -2,8 +2,9 @@
 
 use App\src\models\ProjectModel;
 use App\src\models\InvitationModel;
+use App\src\models\UserModel;
 
-    class DefaultController extends Controller {
+class DefaultController extends Controller {
 
         public function home() {
 
@@ -13,7 +14,16 @@ use App\src\models\InvitationModel;
             }
 
             $projectModel = new ProjectModel($this->getDatabaseConnection());
-            $projects = $projectModel->findProjectsByUser($user);
+            $projects = $projectModel->getAll();
+
+            $userModel = new UserModel($this->getDatabaseConnection());
+            foreach ($projects as $key => $project) {
+                $author = null;
+                $author = $userModel->getById($project->user_id);
+                $author = get_object_vars($author);
+
+                $projects[$key]->user = $author;
+            }
 
             $invitationModel = new InvitationModel($this->getDatabaseConnection());
             $invitations = $invitationModel->getByFieldName('user_id',$user->user_id);

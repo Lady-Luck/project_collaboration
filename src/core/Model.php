@@ -1,4 +1,4 @@
-<?php namespace App\src\models;
+<?php namespace App\src\core;
 
 abstract class Model {
     private $dbc;
