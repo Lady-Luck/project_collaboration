@@ -1,0 +1,42 @@
+.main-container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 1000px;
+}
+.header {
+    height: 100px;
+    top:0;
+    background-color: blue;
+}
+body {
+    background-color: #dceff4;
+    background-image: radial-gradient(circle at 50% 50%, #eaf6ff78, #97caff);
+}
+.navbar-brand {
+    background-size: 50px 100px;
+}
+.centered-large-message {
+    font-size: 25pt;
+    font-weight: bold;
+    margin-top: 100px;
+}
+
+.margin-small{
+    margin-bottom: 15px;
+}
+.progress-extended {
+    background-color: white;
+    padding-bottom: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+.add-btn {
+    margin-top: 30px;
+}
+
+.login-center {
+    padding-top: 70px;
+}

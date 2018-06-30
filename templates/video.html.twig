@@ -1,0 +1,36 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+
+    {% if note %}
+        <div class="alert alert-info">
+            <strong>Info!</strong> {{ note }}
+        </div>
+     {% endif %}
+    <form action="/project_collaboration/video" method="post">
+        <div class="form-group">
+            <label for="input_file">Upload Fajla</label>
+            <input type="file" class="form-control-file" id="input_file" name="file_form[file]">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Snimi</button>
+            <button type="reset" class="btn btn-secondary">Odustani</button>
+        </div>
+    </form>
+
+    <form action="/project_collaboration/video" method="POST" class="mt-5">
+        <div class="form-group">
+            <label for="input_video_url">Url Videa:</label>
+            <input type="text" class="form-control" id="input_video_url" name="video_url_form[video_url]" required placeholder="Unesite url videa">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Snimi</button>
+            <button type="reset" class="btn btn-secondary">Odustani</button>
+        </div>
+    </form>
+    {% if video %}
+    <iframe id="ytplayer" type="text/html" width="800px" height="450px"
+            src="https://www.youtube.com/embed/{{ id }}?rel=0&showinfo=0&color=white&iv_load_policy=3"
+            frameborder="0" allowfullscreen></iframe>
+    {% endif %}
+{% endblock %}

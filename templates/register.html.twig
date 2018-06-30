@@ -1,0 +1,62 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+
+    {% if errors is not empty %}
+        <div class="row">
+            {% for error in errors %}
+                <div class="col-12">
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="row login-center" >
+        <div class="col-2"></div>
+        <div class="col-8">
+
+            <form action="" method="POST">
+
+                <div class="form-group">
+                    <label for="input_email" class="sr-only">Email:</label>
+                    <input class="form-control" type="email" id="input_email" name="register_form[email]" required placeholder="Unesite svoju email adresu"
+                    {% if data.email is defined %}value="{{ data.email }}"{% endif %} autofocus="">
+                </div>
+                <div class="form-group">
+                    <label for="input_first_name" class="sr-only">Ime:</label>
+                    <input class="form-control" type="text" id="input_first_name" name="register_form[first_name]" required placeholder="Unesite svoje ime"
+                    {% if data.first_name is defined %}value="{{ data.first_name }}"{% endif%}
+                    pattern=".*[^\s]{3,}.*">
+                </div>
+                <div class="form-group">
+                    <label for="input_last_name" class="sr-only">Prezime:</label>
+                    <input class="form-control" type="text" id="input_last_name" name="register_form[last_name]" required placeholder="Unesite svoje prezime"
+                    {% if data.last_name is defined %}value="{{ data.last_name }}" {% endif %} pattern=".*[^\s]{3,}.*">
+                </div>
+                <div class="form-group">
+                    <label for="input_password_1" class="sr-only">Lozinka:</label>
+                    <input class="form-control" type="password" id="input_password_1" name="register_form[password_1]" required placeholder="Unesite željenu lozinku">
+                </div>
+                <div class="form-group">
+                    <label for="input_password_2" class="sr-only">Potvrdi lozinku:</label>
+                    <input class="form-control" type="password" id="input_password_2" name="register_form[password_2]" required placeholder="Potvrdite lozinku">
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-lg btn-primary ">Registrujte se</button>
+                    <button type="reset" class="btn btn-lg btn-secondary">Odustani</button>
+                </div>
+
+                <p class="mt-8 text-center">
+                    Imate nalog? <a href="login">Prijavite se</a>
+                </p>
+
+            </form>
+
+        </div>
+        <div class="col-2"></div>
+    </div>
+
+{% endblock %}

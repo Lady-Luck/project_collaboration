@@ -1,0 +1,50 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+
+    {% if errors is not empty %}
+        <div class="row">
+            {% for error in errors %}
+                <div class="col-12">
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="row login-center" >
+        <div class="col-3"></div>
+        <div class="col-6 text-center">
+            <form action="login" method="POST" name="login_form">
+                <br>
+                <h1 class="h3 mb-3 font-weight-normal">Ulogujte se</h1>
+
+                <div class="form-group">
+                    <label for="input_email" class="sr-only">Email:</label>
+                    <input class="form-control" type="email" id="input_email" name="login_form[email]" required placeholder="Unesite svoju email adresu"
+                           {% if data.email is defined %}value="{{ data.email }}"{% endif %} autofocus="">
+                </div>
+                <div class="form-group">
+                    <label for="input_password" class="sr-only">Lozinka:</label>
+                    <input class="form-control" type="password" id="input_password" name="login_form[password]" required placeholder="Unesite lozinku">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-lg btn-primary">Prijavite se</button>
+                    <button type="reset" class="btn btn-lg btn-secondary">Odustani</button>
+                </div>
+
+                <p class="mt-5 mb-3">
+                    Nemate nalog? <a href="register">Registrujte se</a>
+                </p>
+                <p class="mt-5 mb-3 text-muted">©2018</p>
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+
+    </div>
+
+
+{% endblock %}

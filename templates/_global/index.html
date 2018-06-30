@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Aplikacija za kolaboraciju na projektima</title>
+        <link href="/project_collaboration/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/project_collaboration/web/css/custom_style.css" rel="stylesheet">
+    </head>
+    <body>
+        <script src="/project_collaboration/web/js/jquery-3.3.1.min.js"></script>
+        <script src="/project_collaboration/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/project_collaboration/web/js/custom_js.js"></script>
+
+        <main>
+            <div class="container main-container">
+
+                {% block banner %}
+                    {% include 'main/banner.html.twig' %}
+                {%endblock%}
+
+                {% block header %}{%endblock%}
+
+                <div class="content">
+                    <div class="row">
+                        <div class="col-12">
+                            {% block main %}{%endblock%}
+                        </div>
+                    </div>
+                </div>
+
+                {% block footer %}{%endblock%}
+
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,20 @@
+{% extends "_global/index.html" %}
+
+{% block header %}{% include 'main/header.html.twig' %}{% endblock %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="centered-large-message">
+                {% if success %}
+                    Hvala sto ste prihvatili da ucestvujete u projektu. <br>
+                    Klikni <a href="/project_collaboration/project/{{ invitation.project_id }}">ovde </a>za detalje o projektu
+                {% else %}
+                    Doslo je do greske. Molimo pokusajte kasnije.
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

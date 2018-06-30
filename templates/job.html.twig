@@ -1,0 +1,31 @@
+{% extends "_global/index.html" %}
+
+{% block header %}{% include 'main/header.html.twig' %}{% endblock %}
+
+{% block main %}
+
+    <h3 class="display-6">Novi posao</h3>
+
+    <form action="" method="POST"  class="mt-5">
+        <input type="hidden" name="job_form[project_id]" value="{{ project.id }}">
+        <div class="form-group">
+            <label for="input_job_name">Naziv posla:</label>
+            <input type="text" class="form-control" id="input_job_name" name="job_form[name]" required placeholder="Unesite naziv posla" pattern=".*[^\s]{5,}.*">
+        </div>
+        <div class="form-group">
+            <label for="input_job_deadline">Rok za izradu:</label>
+            <input type="date" class="form-control" id="input_job_deadline" name="job_form[deadline]" required placeholder="MM/DD/YYYY">
+        </div>
+        <div class="form-group">
+            <label for="input_job_description">Opis posla:</label>
+            <textarea class="form-control" rows="5" id="input_job_description" name="job_form[description]" required placeholder="Unesite opis posla" pattern=".*[^\s]{10,}.*"></textarea>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Snimi</button>
+            <button type="reset" class="btn btn-secondary">Odustani</button>
+        </div>
+
+    </form>
+
+{% endblock %}
