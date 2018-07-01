@@ -1,31 +1,36 @@
 <?php namespace App\src\services;
 
+use PHPMailer\PHPMailer\PHPMailer;
+
 class EmailService {
 
-    private $headers;
-    private $from = 'stosic@test.rs';
+    private $mailer;
 
     public function __construct()
     {
-        $headers = "From: " . $this->from . "\r\n";
-        $headers .= "Reply-To: ". $this->from . "\r\n";
-        $headers .= "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+        $this->mailer = new PHPMailer();
 
-        $this->headers = $headers;
-    }
+        $this->mailer->isSMTP();
+        $this->mailer->Host = MAIL_HOST;
+        $this->mailer->Port = MAIL_PORT;
+        $this->mailer->SMTPSecure = MAIL_PROTOCOL;
+        $this->mailer->SMTPAuth = true;
+        $this->mailer->Username = MAIL_USERNAME;
+        $this->mailer->Password = MAIL_PASSWORD;
 
-    public function sendEmail ($to, $subject = null, $message = null, $headers = null) {
+        $this->mailer->setFrom(MAIL_USERNAME);
 
-        if (empty($headers)) {
-            $headers = $this->headers;
-        }
-
-        mail($to, $subject, $message, $headers);
+        $this->mailer->isHTML(true);
 
     }
 
+    public function sendEmail ($to, $subject = null, $message = null) {
 
+        $this->mailer->Body = $message;
+        $this->mailer->Subject = $subject;
+        $this->mailer->addAddress($to);
 
+        $this->mailer->send();
+    }
 
 }

@@ -12,7 +12,7 @@ class Controller {
 
     final public function __construct()
     {
-        $conf = new DatabaseConfiguration('localhost', 'root', '', 'project_collaboration');
+        $conf = new DatabaseConfiguration(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME);
         $this->dbc = new DatabaseConnection($conf);
 
         $this->loadTwig();
