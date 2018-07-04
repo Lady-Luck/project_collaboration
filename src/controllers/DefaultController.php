@@ -25,14 +25,6 @@ class DefaultController extends Controller {
                 $projects[$key]->user = $author;
             }
 
-            $invitationModel = new InvitationModel($this->getDatabaseConnection());
-            $invitations = $invitationModel->getByFieldName('user_id',$user->user_id);
-
-            foreach ($invitations as $value){
-                $project = (array)$projectModel->getOneByFieldName('project_id', $value->project_id);
-                $projects[] = $project;
-            }
-
             $br = $progressSum = 0;
             if ($projects) {
                 foreach ($projects as $value) if (!empty($value->progress)) {
