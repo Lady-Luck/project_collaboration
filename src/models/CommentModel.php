@@ -11,7 +11,7 @@ class CommentModel extends Model  {
     protected function getFields() {
 
         $fields = array(
-            'comment' => new Field(new StringValidator(), true),
+            'comment' => new Field(new StringValidator(5), true),
             'user_id' => new Field(new StringValidator(), true),
             'job_id' => new Field(new StringValidator(), true),
             'created_at' => new Field(new DateTimeValidator() ,true),

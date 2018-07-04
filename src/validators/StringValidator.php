@@ -6,10 +6,10 @@ class StringValidator implements Validator {
     private $minLength;
     private $maxLength;
 
-    public function __construct()
+    public function __construct($min = 0, $max = 255)
     {
-        $this->minLength = 0;
-        $this->maxLength = 255;
+        $this->minLength = $min;
+        $this->maxLength = $max;
     }
 
     public function setMinLength (int $length) {
