@@ -29,7 +29,7 @@ class DefaultController extends Controller {
             $invitations = $invitationModel->getByFieldName('user_id',$user->user_id);
 
             foreach ($invitations as $value){
-                $project = (array)$projectModel->getOneByFieldName('id', $value->project_id);
+                $project = (array)$projectModel->getOneByFieldName('project_id', $value->project_id);
                 $projects[] = $project;
             }
 

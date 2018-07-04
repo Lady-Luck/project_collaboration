@@ -54,7 +54,9 @@
                             <td>{{ job.description }}</td>
                             <td>{{ job.deadline | date('d.m.Y')}}</td>
                             <td>{{ job.progress }}%</td>
-                            <td><a href="" class="btn btn-primary">Detaljnije</a></td>
+                            <td>
+                                <a href="{{ base_url }}/job/{{ job.job_id }}" class="btn btn-primary">Detaljnije</a>
+                            </td>
                             <td><a href="{{ base_url }}/jobApply/{{ job.job_id }}" class="btn btn-success">Prijavi se</a></td>
                         </tr>
                     {% endfor %}
